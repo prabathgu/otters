@@ -7,7 +7,7 @@ Winston is a small experiment in creating an AI agent designed to be your person
 ## Setup
 1. Git clone the repo
    ```bash
-   git clone XYZ TODO XYZ
+   git clone https://github.com/wandb/fc2025-space-agent-public
    ```
 
 2. Install the required dependencies:
