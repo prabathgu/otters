@@ -1,9 +1,12 @@
 import boto3
 import json
+import dotenv
 
 # Tests:
 #import os; os.environ['AWS_ACCESS_KEY_ID'] = 'xyz'
 #model_id = "us.anthropic.claude-3-17-sonnet-20250219-v1:0"
+
+dotenv.load_dotenv()
 
 
 model_id = "us.anthropic.claude-3-7-sonnet-20250219-v1:0" # TEST MODEL IDs here

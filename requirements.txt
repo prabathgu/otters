@@ -1,3 +1,4 @@
 weave
 boto3
 html2text
+python-dotenv
