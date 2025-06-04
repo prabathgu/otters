@@ -23,15 +23,7 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "Dataset Upload (Task 2.1)",
-            "type": "debugpy",
-            "request": "launch",
-            "args": ["--dataset_path", "objects/datasets/[YOUR DATASET].jsonl", "--dataset_name", "[YOUR DATASET NAME]"],
-            "program": "${workspaceFolder}/upload_dataset.py",
-            "console": "integratedTerminal"
-        },
-        {
-            "name": "Eval Calculator (Task 2.2)",
+            "name": "Eval Calculator (Task 2.1)",
             "type": "debugpy",
             "request": "launch",
             "args": ["--first-n", "10", "--dataset", "objects/datasets/eval_calculator.jsonl"],
@@ -39,6 +31,14 @@
                 "WEAVE_PARALLELISM": "5"
             },
             "program": "${workspaceFolder}/evaluation.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Dataset Upload (Task 2.2)",
+            "type": "debugpy",
+            "request": "launch",
+            "args": ["--dataset_path", "objects/datasets/[YOUR DATASET].jsonl", "--dataset_name", "[YOUR DATASET NAME]"],
+            "program": "${workspaceFolder}/upload_dataset.py",
             "console": "integratedTerminal"
         },
         {
