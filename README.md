@@ -24,22 +24,27 @@ Winston is a small experiment in creating an AI agent designed to be your person
    ```
 
 3. Set up your secrets:
-   Create a `.streamlit/secrets.toml` file and add the following text with the API keys replaced with your teams' keys:
-   ```toml
+   Create a `.env` file and add the following text with the API keys replaced with your teams' keys:
+   ```
    #### CONFIGURE ME ####
-   AWS_ACCESS_KEY_ID = "XXXX" 
-   AWS_SECRET_ACCESS_KEY = "XXX"
-   AWS_SESSION_TOKEN = "XXXX"
 
-   WEAVE_API_KEY = "XXXX"
-   WEAVE_ENTITY= "your-team-here"
-   WEAVE_PROJECT= "your-weave-project-here"
+   # API Key For Weave (wandb.ai/authorize)
+   WEAVE_API_KEY = "your-weave-api-key" 
 
-   #### DO NOT CHANGE ####
-   AWS_REGION_NAME = "us-east-1"
+   # Weave Project & Team Settings
+   WEAVE_ENTITY= "your-team-name"
+   WEAVE_PROJECT= "your-project-name"
+
+   # API Keys for AWS
+   AWS_ACCESS_KEY_ID="XXX" 
+   AWS_SECRET_ACCESS_KEY="XXX"
+   AWS_SESSION_TOKEN="XXX"
+
+   # Your finetuned model endpopint from first Workshop (Do not worry about this if you did not participate in workshop 1)
+   AWS_FINETUNED_MODEL_ENDPOINT = "huggingface-pytorch-tgi-inference-2025-06-02-21-31-48-855"
    ```
 
-   Note: `.streamlit/secrets.toml` is in the `.gitignore` file to keep your secrets secure.
+   Note: `.env` is in the `.gitignore` file to keep your secrets secure.
    Tip: Use `python validate_aws_setup.py` to check if your credentials work (and swap the Model ID to test that too!).
 
 4. Run an evaluation (most tasks):
@@ -60,3 +65,5 @@ Winston is a small experiment in creating an AI agent designed to be your person
 
    Find the correct inputs in the "get" tab of the uploaded dataset in the Weave UI.
 
+
+TIP: We provide a launch.json file containing debug commands for all tasks, compatible with VSCode, Cursor, etc.

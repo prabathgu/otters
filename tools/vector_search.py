@@ -1,21 +1,14 @@
 import json
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 import weave
 from tools.return_type import ToolResult
 import concurrent.futures
+import boto3
 import os
-import boto3  # Replaced litellm with boto3
 import numpy as np
 from botocore.exceptions import ClientError  # Added for error handling
 
-# Ensure AWS credentials are configured (via AWS CLI, environment variables, or IAM roles)
-try:
-    bedrock_client = boto3.client('bedrock-runtime')
-    print("AWS Bedrock client initialized successfully.")
-except Exception as e:
-    print(f"Warning: Failed to initialize AWS Bedrock client: {e}")
-    bedrock_client = None
-
+_BEDROCK_CLIENT: boto3.client = boto3.client('bedrock-runtime', region_name="us-east-1")
 EMBEDDING_MODEL = "amazon.titan-embed-text-v2:0"  # Updated to Titan V2
 EMBEDDING_DIMENSION = 1024  # Titan V2 default dimension (supports 1024, 512, 256)
     
@@ -110,7 +103,7 @@ def _get_embedding(text: str) -> np.ndarray:
     """
     Get the embedding for a given text using Amazon Bedrock Titan Text Embeddings V2.
     """
-    if bedrock_client is None:
+    if _BEDROCK_CLIENT is None:
         raise RuntimeError("AWS Bedrock client not initialized. Please configure AWS credentials.")
     
     try:
@@ -122,7 +115,7 @@ def _get_embedding(text: str) -> np.ndarray:
         })
         
         # Invoke the Bedrock model
-        response = bedrock_client.invoke_model(
+        response = _BEDROCK_CLIENT.invoke_model(
             body=request_body,
             modelId=EMBEDDING_MODEL,
             accept="application/json",

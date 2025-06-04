@@ -1,6 +1,5 @@
 # Ignore data folder and database files
 data/
-.vscode/
 misc/
 
 # Byte-compiled / optimized / DLL files

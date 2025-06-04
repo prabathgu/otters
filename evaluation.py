@@ -1,14 +1,19 @@
 import weave
 from weave import Evaluation
 from weave import Dataset
-from objects.models.winston import Winston
 import asyncio
 import json
 import os
 import argparse
-from objects.scorers.winston.response_quality_judge import ResponseQualityScorer
-from utils.helpers import load_env_vars
 from typing import Any, List, Dict
+
+# Load environment variables first
+from dotenv import load_dotenv
+load_dotenv()
+
+from objects.models.winston import Winston
+from objects.scorers.winston.response_quality_judge import ResponseQualityScorer
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Run Winston evaluation')
@@ -20,6 +25,8 @@ def parse_args():
                        help='Only evaluate on examples with these IDs')
     parser.add_argument('--dataset', type=str, default='objects/datasets/eval_public.jsonl',
                        help='Path to dataset file (default: objects/datasets/eval_public.jsonl)')
+    parser.add_argument('--use-finetuned', action='store_true',
+                       help='Use finetuned model instead of base model (default: False)')
     return parser.parse_args()
 
 def load_dataset(file_path: str) -> List[Dict]:
@@ -62,16 +69,10 @@ def preprocess_model_input(example: Dict[str, str]) -> Dict[str, Any]:
     }
 
 async def main():
-    # Load environment variables first
-    load_env_vars()
-
     # Initialize Weave
     weave.init(f'{os.getenv("WEAVE_ENTITY")}/{os.getenv("WEAVE_PROJECT")}')
 
     # Initialize the vector database
-    from tools.vector_search import initialize_or_load_vector_db
-    initialize_or_load_vector_db('/Users/wylerzahm/Desktop/projects/fc2025-space-agent/objects/datasets/knowledge_base.md')
-
     # Parse arguments
     args = parse_args()
     
@@ -97,6 +98,7 @@ async def main():
     model_id = "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
     winston = Winston(
         model_id=model_id,
+        use_finetuned=args.use_finetuned
     )
 
     # Initialize the scorers
@@ -113,7 +115,7 @@ async def main():
         scorers=[
             quality_scorer
         ],
-        trials=args.trials
+        trials=args.trials,
     )
 
     display_name = f"WinstonSpaceAgent{dataset_identifier.capitalize()}.{model_id_for_display}.{args.trials}"

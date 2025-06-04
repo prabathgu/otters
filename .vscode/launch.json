@@ -1,0 +1,67 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: current file",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Eval Public (Task 1, Task 3.1)",
+            "type": "debugpy",
+            "request": "launch",
+            "args": ["--first-n", "10", "--dataset", "objects/datasets/eval_public.jsonl"],
+            "env": {
+                "WEAVE_PARALLELISM": "5"
+            },
+            "program": "${workspaceFolder}/evaluation.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Dataset Upload (Task 2.1)",
+            "type": "debugpy",
+            "request": "launch",
+            "args": ["--dataset_path", "objects/datasets/[YOUR DATASET].jsonl", "--dataset_name", "[YOUR DATASET NAME]"],
+            "program": "${workspaceFolder}/upload_dataset.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Eval Calculator (Task 2.2)",
+            "type": "debugpy",
+            "request": "launch",
+            "args": ["--first-n", "10", "--dataset", "objects/datasets/eval_calculator.jsonl"],
+            "env": {
+                "WEAVE_PARALLELISM": "5"
+            },
+            "program": "${workspaceFolder}/evaluation.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Eval RAG (Task 3.2)",
+            "type": "debugpy",
+            "request": "launch",
+            "args": ["--first-n", "10", "--dataset", "objects/datasets/eval_rag.jsonl"],
+            "env": {
+                "WEAVE_PARALLELISM": "5"
+            },
+            "program": "${workspaceFolder}/evaluation.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Eval Finetuned (Task 5)",
+            "type": "debugpy",
+            "request": "launch",
+            "args": ["--first-n", "10", "--dataset", "objects/datasets/eval_public.jsonl", "--use-finetuned"],
+            "env": {
+                "WEAVE_PARALLELISM": "5"
+            },
+            "program": "${workspaceFolder}/evaluation.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}

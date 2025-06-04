@@ -22,26 +22,6 @@ def load_tools() -> List:
                     all_tools.update(tool_dict)
     return list(all_tools.values())
 
-def load_env_vars() -> None:
-    """
-    Loads environment variables from .streamlit/secrets.toml and/or .env file.
-    Always overrides environment variables with values from secrets.toml.
-    """
-    secrets_path = Path('.streamlit/secrets.toml')
-    if secrets_path.exists():
-        with open(secrets_path, 'rb') as f:
-            try:
-                secrets = tomllib.load(f)
-                print("Loaded secrets:", [k for k in secrets.keys()])  # Debug
-                
-                for key, value in secrets.items():
-                    # Always override with value from secrets
-                    os.environ[key] = str(value)
-            except Exception as e:
-                print(f"Error loading secrets.toml: {e}")
-    else:
-        print("Warning: secrets.toml not found at", secrets_path.absolute())  # Debug
-
 def clean_claude_json(content: str) -> str:
     """
     Clean JSON content by removing markdown code block markers that Claude sometimes adds.
