@@ -15,7 +15,7 @@
             "name": "Eval Public (Task 1, Task 3.1)",
             "type": "debugpy",
             "request": "launch",
-            "args": ["--first-n", "10", "--dataset", "objects/datasets/eval_public.jsonl"],
+            "args": ["--dataset", "objects/datasets/eval_public.jsonl"],
             "env": {
                 "WEAVE_PARALLELISM": "5"
             },
@@ -26,7 +26,7 @@
             "name": "Eval Calculator (Task 2.1)",
             "type": "debugpy",
             "request": "launch",
-            "args": ["--first-n", "10", "--dataset", "objects/datasets/eval_calculator.jsonl"],
+            "args": ["--dataset", "objects/datasets/eval_calculator.jsonl"],
             "env": {
                 "WEAVE_PARALLELISM": "5"
             },
@@ -37,7 +37,7 @@
             "name": "Dataset Upload (Task 2.2)",
             "type": "debugpy",
             "request": "launch",
-            "args": ["--dataset_path", "objects/datasets/[YOUR DATASET].jsonl", "--dataset_name", "[YOUR DATASET NAME]"],
+            "args": ["--dataset_path", "objects/datasets/custom.jsonl", "--dataset_name", "custom"],
             "program": "${workspaceFolder}/upload_dataset.py",
             "console": "integratedTerminal"
         },
@@ -45,7 +45,7 @@
             "name": "Eval RAG (Task 3.2)",
             "type": "debugpy",
             "request": "launch",
-            "args": ["--first-n", "10", "--dataset", "objects/datasets/eval_rag.jsonl"],
+            "args": ["--dataset", "objects/datasets/eval_rag.jsonl"],
             "env": {
                 "WEAVE_PARALLELISM": "5"
             },
@@ -56,7 +56,7 @@
             "name": "Eval Finetuned (Task 5)",
             "type": "debugpy",
             "request": "launch",
-            "args": ["--first-n", "10", "--dataset", "objects/datasets/eval_public.jsonl", "--use-finetuned"],
+            "args": ["--dataset", "objects/datasets/eval_public.jsonl", "--use-finetuned"],
             "env": {
                 "WEAVE_PARALLELISM": "5"
             },
