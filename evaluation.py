@@ -70,7 +70,7 @@ def preprocess_model_input(example: Dict[str, str]) -> Dict[str, Any]:
 
 async def main():
     # Initialize Weave
-    weave.init(f'{os.getenv("WEAVE_ENTITY")}/{os.getenv("WEAVE_PROJECT")}')
+    client = weave.init(f'{os.getenv("WEAVE_ENTITY")}/{os.getenv("WEAVE_PROJECT")}')
 
     # Initialize the vector database
     # Parse arguments
@@ -95,7 +95,7 @@ async def main():
     dataset = Dataset(name=dataset_name, rows=filtered_examples)
 
     # instantiate winston with all tools
-    model_id = "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    model_id = "us.anthropic.claude-sonnet-4-20250514-v1:0"
     winston = Winston(
         model_id=model_id,
         use_finetuned=args.use_finetuned
@@ -125,6 +125,8 @@ async def main():
         display_name += f".ids{'_'.join(args.ids)}"
 
     await evaluation.evaluate(winston, __weave={"display_name": display_name})
+    client.finish()
 
 if __name__ == "__main__":
     asyncio.run(main())
+    
