@@ -32,7 +32,7 @@ Winston is a small experiment in creating an AI agent designed to be your person
    WANDB_API_KEY = "your-wandb-api-key" 
 
    # Weave Project & Team Settings
-   WEAVE_ENTITY= "your-team-name"
+   WEAVE_TEAM= "your-team-name"
    WEAVE_PROJECT= "your-project-name"
 
    # API Keys for AWS

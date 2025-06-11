@@ -70,7 +70,7 @@ def preprocess_model_input(example: Dict[str, str]) -> Dict[str, Any]:
 
 async def main():
     # Initialize Weave
-    client = weave.init(f'{os.getenv("WEAVE_ENTITY")}/{os.getenv("WEAVE_PROJECT")}')
+    client = weave.init(f'{os.getenv("WEAVE_TEAM")}/{os.getenv("WEAVE_PROJECT")}')
 
     # Initialize the vector database
     # Parse arguments

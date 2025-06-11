@@ -15,7 +15,7 @@ parser.add_argument('--dataset_name', help='Name of the dataset')
 args = parser.parse_args()
 
 # Initialize Weave
-weave.init(f"{os.getenv('WEAVE_ENTITY')}/{os.getenv('WEAVE_PROJECT')}")
+weave.init(f"{os.getenv('WEAVE_TEAM')}/{os.getenv('WEAVE_PROJECT')}")
 
 # Create a dataset
 data = evaluation.load_dataset(args.dataset_path)
