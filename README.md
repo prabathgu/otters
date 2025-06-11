@@ -35,19 +35,29 @@ Winston is a small experiment in creating an AI agent designed to be your person
    WEAVE_TEAM= "your-team-name"
    WEAVE_PROJECT= "your-project-name"
 
-   # API Keys for AWS
+   # API Keys for AWS (Fetch from Game Day Credentials Page)
    AWS_ACCESS_KEY_ID="XXX" 
    AWS_SECRET_ACCESS_KEY="XXX"
    AWS_SESSION_TOKEN="XXX"
+   AWS_DEFAULT_REGION="us-east-1" # Leave as is
 
    # Your finetuned model endpopint from first Workshop (Do not worry about this if you did not participate in workshop 1)
    AWS_FINETUNED_MODEL_ENDPOINT = "huggingface-pytorch-tgi-inference-2025-06-02-21-31-48-855"
    ```
 
    Note: `.env` is in the `.gitignore` file to keep your secrets secure.
+
+4. Load your secrets
+   NOTE: RUN THIS AFTER ANY UPDATES TO .ENV IN THE TERMINAL FROM WHICH YOU CALL YOUR MODEL EVALUATIONS.
+   
+   ```
+   source force_env.sh
+   ```
+   
    Tip: Use `python validate_aws_setup.py` to check if your credentials work (and swap the Model ID to test that too!).
 
-4. Run an evaluation (most tasks):
+
+5. Run an evaluation (most tasks):
 
    Use the following bash command from the base directory. A line with a 🍩 emoji will link to your evaluation results. 
    This URL will guide you to the input for task 1.
@@ -56,7 +66,7 @@ Winston is a small experiment in creating an AI agent designed to be your person
    WEAVE_PARALLELISM=5 python evaluation.py --dataset objects/datasets/eval_public.jsonl   
    ```
 
-5. Upload a new dataset for submission (task 2.2):
+6. Upload a new dataset for submission (task 2.2):
 
    Create your new dataset, following `objects/datasets/eval_public.jsonl` formatting, and run the following:
    ```
