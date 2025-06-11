@@ -4,6 +4,7 @@ import weave
 from weave import Model
 from weave.integrations.bedrock.bedrock_sdk import patch_client
 import boto3
+import os
 
 from objects.prompts.winston import WinstonPlanAnswerPrompt, WinstonAnswerWithResultsPrompt
 from objects.models.vincent import Vincent
@@ -24,7 +25,7 @@ class Winston(Model):
         model_id: str = "gpt-4o",
         auto_execute: bool = True,
         vincent: Vincent = None,
-        region_name: str = "us-east-1",
+        region_name: str = os.getenv("AWS_DEFAULT_REGION"),
         use_finetuned: bool = False,
     ):
         super().__init__()
@@ -33,7 +34,7 @@ class Winston(Model):
         self._auto_execute = auto_execute
         self.bedrock_client = boto3.client('bedrock-runtime', region_name=region_name)
         
-        patch_client(self.bedrock_client)
+        #patch_client(self.bedrock_client)
         
         initialize_or_load_vector_db('/Users/wylerzahm/Desktop/projects/fc2025-space-agent/objects/datasets/knowledge_base.md')
         
@@ -268,10 +269,14 @@ class Winston(Model):
                 request_body["system"] = system_message
 
             # Make the Bedrock API call
-            response = self.bedrock_client.invoke_model(
-                modelId=self.model_id,
-                body=json.dumps(request_body)
-            )
+            try:
+                response = self.bedrock_client.invoke_model(
+                    modelId=self.model_id,
+                    body=json.dumps(request_body)
+                )
+            except Exception as e:
+                print(f"Error invoking model: {e}")
+                raise e
 
             # Parse the response
             body_unparsed = response['body'].read()

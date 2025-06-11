@@ -4,12 +4,11 @@ import sagemaker
 from sagemaker.huggingface.model import HuggingFacePredictor
 from datetime import datetime
 import os
-import dotenv
 
-dotenv.load_dotenv()
+# import dotenv
+# dotenv.load_dotenv()
 
-sess = sagemaker.Session(boto_session=boto3.Session(region_name="us-east-1"))
-client = boto3.client('sagemaker-runtime', region_name="us-east-1")
+sess = sagemaker.Session(boto_session=boto3.Session(region_name=os.getenv("AWS_DEFAULT_REGION")))
 
 llm = HuggingFacePredictor(
     endpoint_name=os.getenv("AWS_FINETUNED_MODEL_ENDPOINT"),

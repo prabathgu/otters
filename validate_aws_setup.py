@@ -1,6 +1,7 @@
 import boto3
 import json
 import dotenv
+import os
 
 # Tests:
 #import os; os.environ['AWS_ACCESS_KEY_ID'] = 'xyz'
@@ -11,7 +12,7 @@ dotenv.load_dotenv()
 
 model_id = "us.anthropic.claude-3-7-sonnet-20250219-v1:0" # TEST MODEL IDs here
 try:
-    bedrock_client: boto3.client = boto3.client('bedrock-runtime', region_name="us-east-1")
+    bedrock_client: boto3.client = boto3.client('bedrock-runtime', region_name=os.getenv("AWS_DEFAULT_REGION"))
 except Exception as e:
     print(f"FAILED: You likely are missing API keys or the keys are incorrect. Please try again or request assistance: {e}")
     exit(1)

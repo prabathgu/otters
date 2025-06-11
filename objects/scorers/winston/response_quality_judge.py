@@ -1,4 +1,5 @@
 import json
+import os
 import boto3
 from weave import Scorer
 import weave
@@ -23,9 +24,9 @@ class ResponseQualityScorer(Scorer):
     using type-specific criteria.
     """
     model_id: str = "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
-    bedrock_client: boto3.client = boto3.client('bedrock-runtime', region_name="us-east-1")
+    bedrock_client: boto3.client = boto3.client('bedrock-runtime', region_name=os.getenv("AWS_DEFAULT_REGION"))
     
-    def __init__(self, model_id: str, column_map: dict, region_name: str = "us-east-1"):
+    def __init__(self, model_id: str, column_map: dict, region_name: str = os.getenv("AWS_DEFAULT_REGION")):
         super().__init__(model_id=model_id, column_map=column_map)
         # Remove 'bedrock/' prefix if present
         if model_id.startswith('bedrock/'):

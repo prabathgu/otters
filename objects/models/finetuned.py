@@ -11,7 +11,7 @@ class FinetunedModel(Model):
     
     def __init__(self):
         super().__init__()
-        self.sess = sagemaker.Session(boto_session=boto3.Session(region_name="us-east-1"))
+        self.sess = sagemaker.Session(boto_session=boto3.Session(region_name=os.getenv("AWS_DEFAULT_REGION")))
         self.llm = HuggingFacePredictor(
             endpoint_name=os.getenv("AWS_FINETUNED_MODEL_ENDPOINT"),
             sagemaker_session=self.sess
