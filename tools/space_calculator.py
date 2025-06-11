@@ -11,7 +11,7 @@ SPACE_CALCULATOR_TOOLS = {
             "description": """Calculates the distance between the spacecraft and a celestial object.
             Use this tool for:
             - Determining how far the spacecraft is from a planet, moon, star, or other celestial body
-            - TODO: Add more use cases for distance calculations
+            - TODO #1: Add more use cases for distance calculations
             - Planning navigation routes and course corrections
             - Estimating travel time to destinations
             """,
@@ -30,7 +30,7 @@ SPACE_CALCULATOR_TOOLS = {
                     },
                     "object_coordinates": {
                         "type": "object",
-                        "description": "TODO: Add description for object coordinates parameter",
+                        "description": "TODO #2: Add description for object coordinates parameter",
                         "properties": {
                             "x": {"type": "number"},
                             "y": {"type": "number"},
@@ -56,7 +56,7 @@ SPACE_CALCULATOR_TOOLS = {
             "description": """Calculates the gravitational force between the spacecraft and a celestial object.
             Use this tool for:
             - Determining gravitational influence of nearby celestial bodies
-            - TODO: Add use case for escape velocity calculations
+            - TODO #3: Add use case for escape velocity calculations
             - Assessing gravity-related dangers
             - Planning orbital maneuvers
             """,
@@ -65,7 +65,7 @@ SPACE_CALCULATOR_TOOLS = {
                 "properties": {
                     "spacecraft_mass": {
                         "type": "number",
-                        "description": "TODO: Add description for spacecraft mass parameter"
+                        "description": "TODO #4: Add description for spacecraft mass parameter (e.g. 1000 kg)"
                     },
                     "object_mass": {
                         "type": "number",
@@ -120,15 +120,14 @@ def calculate_distance(*, current_coordinates: Dict[str, float],
         x1, y1, z1 = current_coordinates["x"], current_coordinates["y"], current_coordinates["z"]
         x2, y2, z2 = object_coordinates["x"], object_coordinates["y"], object_coordinates["z"]
         
-        # TODO: Calculate Euclidean distance in kilometers using the distance formula
-        # Hint: Use math.sqrt and the 3D distance formula: sqrt((x2-x1)² + (y2-y1)² + (z2-z1)²)
+        # TODO #5: Calculate Euclidean distance in kilometers using the distance formula; Hint: Use math.sqrt and the 3D distance formula: sqrt((x2-x1)² + (y2-y1)² + (z2-z1)²)
         distance_km = 0  # Replace this line with the actual calculation
         
         # Convert to requested unit
         if unit == "km":
             distance_value = distance_km
         elif unit == "au":  # Astronomical Unit
-            # TODO: Convert km to AU (1 AU = 149,597,870.7 km)
+            # TODO #6: Convert km to AU (1 AU = 149,597,870.7 km)
             distance_value = distance_km  # Replace this with proper conversion
         elif unit == "ly":  # Light Year
             distance_value = distance_km / 9460730472580.8  # 1 ly = 9,460,730,472,580.8 km
@@ -138,10 +137,10 @@ def calculate_distance(*, current_coordinates: Dict[str, float],
         result = {
             "distance": round(distance_value, 4),
             "unit": unit,
-            # TODO: Add vector field showing direction components (x, y, z differences)
+            # TODO #7: Add vector field showing direction components (x, y, z differences)
         }
         
-        # TODO: Return result using ToolResult.ok() wrapper instead of throwing error
+        # TODO #8: Return result using ToolResult.ok() wrapper instead of throwing error
         raise Exception("Function not properly implemented - check return statement")
     except Exception as e:
         return ToolResult.err(str(e))
@@ -150,16 +149,15 @@ def calculate_distance(*, current_coordinates: Dict[str, float],
 def calculate_gravity(*, spacecraft_mass: float, object_mass: float, distance: float) -> ToolResult[Dict[str, Any]]:
     """Calculate the gravitational force between the spacecraft and a celestial object."""
     try:
-        # TODO: Set the gravitational constant (G) in m³/kg/s²
-        # Hint: G = 6.6743e-11
+        # TODO #9: Set the gravitational constant (G) in m³/kg/s²; Hint: G = 6.6743e-11
         G = 0  # Replace this with the actual gravitational constant
         
-        # TODO: Calculate gravitational force using Newton's law: F = G * m1 * m2 / r²
+        # TODO #10: Calculate gravitational force using Newton's law: F = G * m1 * m2 / r²
         force = 0  # Replace this with the actual gravitational force calculation
         
         result = {
             "force_newtons": round(force, 4),
-            # TODO: Add spacecraft_mass_kg field to show input spacecraft mass
+            # TODO #11: Add spacecraft_mass_kg field to show input spacecraft mass
             "object_mass_kg": object_mass,
             "distance_m": distance
         }
