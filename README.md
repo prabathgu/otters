@@ -10,7 +10,12 @@ Winston is a small experiment in creating an AI agent designed to be your person
    git clone https://github.com/wandb/fc2025-space-agent-public
    ```
 
-2. Install the required dependencies:
+2. Change directory into the project folder:
+   ```bash
+   cd fc2025-space-agent-public
+   ```
+
+3. Install the required dependencies:
    ```bash
    python -m venv .venv
    source .venv/bin/activate
@@ -23,7 +28,7 @@ Winston is a small experiment in creating an AI agent designed to be your person
    uv pip install -r requirements.txt
    ```
 
-3. Set up your secrets:
+4. Set up your secrets:
    Create a `.env` file and add the following text with the API keys replaced with your teams' keys:
    ```
    #### CONFIGURE ME ####
@@ -47,7 +52,7 @@ Winston is a small experiment in creating an AI agent designed to be your person
 
    Note: `.env` is in the `.gitignore` file to keep your secrets secure.
 
-4. Load your secrets
+5. Load your secrets
    NOTE: RUN THIS AFTER ANY UPDATES TO .ENV IN THE TERMINAL FROM WHICH YOU CALL YOUR MODEL EVALUATIONS.
    
    ```
@@ -57,7 +62,7 @@ Winston is a small experiment in creating an AI agent designed to be your person
    Tip: Use `python validate_aws_setup.py` to check if your credentials work (and swap the Model ID to test that too!).
 
 
-5. Run an evaluation (most tasks):
+6. Run an evaluation (most tasks):
 
    Use the following bash command from the base directory. A line with a 🍩 emoji will link to your evaluation results. 
    This URL will guide you to the input for task 1.
@@ -66,7 +71,7 @@ Winston is a small experiment in creating an AI agent designed to be your person
    WEAVE_PARALLELISM=5 python evaluation.py --dataset objects/datasets/eval_public.jsonl   
    ```
 
-6. Upload a new dataset for submission (task 2.2):
+7. Upload a new dataset for submission (task 2.2):
 
    Create your new dataset, following `objects/datasets/eval_public.jsonl` formatting, and run the following:
    ```
