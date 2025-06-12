@@ -1,8 +1,36 @@
+"""
+SPACE CALCULATOR IMPLEMENTATION GUIDE
+=====================================
+
+This file contains 11 TODOs that need to be completed to make the space calculator functional.
+Work through them in order for the best experience:
+
+Phase 1 - Winston's Instructions (TODOs #1-#4):
+- TODO #1: Add distance calculation use cases
+- TODO #2: Add object coordinates description  
+- TODO #3: Add gravity calculation use cases
+- TODO #4: Add spacecraft mass description
+
+Phase 2 - Distance Calculations (TODOs #5-#8):
+- TODO #5: Implement 3D distance formula
+- TODO #6: Convert km to AU units
+- TODO #7: Calculate direction vector components
+- TODO #8: Fix return statement
+
+Phase 3 - Gravity Calculations (TODOs #9-#11):
+- TODO #9: Set gravitational constant
+- TODO #10: Implement Newton's law of gravitation
+- TODO #11: Add missing result field
+
+💡 TIP: Complete each section before moving to the next!
+"""
+
 import weave
 import math
 from typing import Dict, Any, Union, List
 from tools.return_type import ToolResult
 
+"""Phase 1 - Winston's Instructions"""
 SPACE_CALCULATOR_TOOLS = {
     "calculate_distance": {
         "type": "function",
@@ -11,7 +39,7 @@ SPACE_CALCULATOR_TOOLS = {
             "description": """Calculates the distance between the spacecraft and a celestial object.
             Use this tool for:
             - Determining how far the spacecraft is from a planet, moon, star, or other celestial body
-            - TODO #1: Add more use cases for distance calculations
+            - TODO #1: Add more use cases for distance calculations (e.g., "Calculating minimum safe distance from a black hole's event horizon")
             - Planning navigation routes and course corrections
             - Estimating travel time to destinations
             """,
@@ -30,7 +58,7 @@ SPACE_CALCULATOR_TOOLS = {
                     },
                     "object_coordinates": {
                         "type": "object",
-                        "description": "TODO #2: Add description for object coordinates parameter",
+                        "description": "TODO #2: Add description for object coordinates parameter - describe what these coordinates represent in the context of space navigation",
                         "properties": {
                             "x": {"type": "number"},
                             "y": {"type": "number"},
@@ -65,7 +93,7 @@ SPACE_CALCULATOR_TOOLS = {
                 "properties": {
                     "spacecraft_mass": {
                         "type": "number",
-                        "description": "TODO #4: Add description for spacecraft mass parameter (e.g. 1000 kg)"
+                        "description": "TODO #4: Add description for spacecraft mass parameter - describe what this mass value represents and its role in gravitational calculations"
                     },
                     "object_mass": {
                         "type": "number",
@@ -110,6 +138,7 @@ SPACE_CALCULATOR_TOOLS = {
     }
 }
 
+"""Phase 2 - Distance Calculations"""
 @weave.op(name="space_calculator-calculate_distance")
 def calculate_distance(*, current_coordinates: Dict[str, float], 
                       object_coordinates: Dict[str, float], 
@@ -137,7 +166,12 @@ def calculate_distance(*, current_coordinates: Dict[str, float],
         result = {
             "distance": round(distance_value, 4),
             "unit": unit,
-            # TODO #7: Add vector field showing direction components (x, y, z differences)
+            # TODO #7: Update vector field with direction components (x, y, z differences)
+            "vector": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
         }
         
         # TODO #8: Return result using ToolResult.ok() wrapper instead of throwing error
@@ -145,14 +179,16 @@ def calculate_distance(*, current_coordinates: Dict[str, float],
     except Exception as e:
         return ToolResult.err(str(e))
 
+"""Phase 3 - Gravity Calculations"""
 @weave.op(name="space_calculator-calculate_gravity")
 def calculate_gravity(*, spacecraft_mass: float, object_mass: float, distance: float) -> ToolResult[Dict[str, Any]]:
     """Calculate the gravitational force between the spacecraft and a celestial object."""
     try:
-        # TODO #9: Set the gravitational constant (G) in m³/kg/s²; Hint: G = 6.6743e-11
+        # TODO #9: Set the gravitational constant (G) in m³/kg/s² - you can search online for this value
         G = 0  # Replace this with the actual gravitational constant
         
         # TODO #10: Calculate gravitational force using Newton's law: F = G * m1 * m2 / r²
+        # Reference the input parameters of the function
         force = 0  # Replace this with the actual gravitational force calculation
         
         result = {
@@ -166,6 +202,8 @@ def calculate_gravity(*, spacecraft_mass: float, object_mass: float, distance: f
     except Exception as e:
         return ToolResult.err(str(e))
 
+"""Travel Time Calculations"""
+# No changes needed below this line
 @weave.op(name="space_calculator-calculate_travel_time")
 def calculate_travel_time(*, distance: float, speed: float) -> ToolResult[Dict[str, Any]]:
     """Calculate the time required to travel a distance at a given speed."""
