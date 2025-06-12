@@ -34,7 +34,7 @@ class Winston(Model):
         self._auto_execute = auto_execute
         self.bedrock_client = boto3.client('bedrock-runtime', region_name=region_name)
         
-        #patch_client(self.bedrock_client)
+        patch_client(self.bedrock_client)
         
         initialize_or_load_vector_db('/Users/wylerzahm/Desktop/projects/fc2025-space-agent/objects/datasets/knowledge_base.md')
         
