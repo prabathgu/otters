@@ -68,7 +68,7 @@ Winston is a small experiment in creating an AI agent designed to be your person
    This URL will guide you to the input for task 1.
 
    ```bash
-   WEAVE_PARALLELISM=5 python evaluation.py --dataset objects/datasets/eval_public.jsonl   
+   WEAVE_PARALLELISM=1 python evaluation.py --dataset objects/datasets/eval_public.jsonl   
    ```
 
 7. Upload a new dataset for submission (task 2.2):

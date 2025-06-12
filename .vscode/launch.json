@@ -17,7 +17,7 @@
             "request": "launch",
             "args": ["--dataset", "objects/datasets/eval_public.jsonl"],
             "env": {
-                "WEAVE_PARALLELISM": "5"
+                "WEAVE_PARALLELISM": "1"
             },
             "program": "${workspaceFolder}/evaluation.py",
             "console": "integratedTerminal"
@@ -28,7 +28,7 @@
             "request": "launch",
             "args": ["--dataset", "objects/datasets/eval_calculator.jsonl"],
             "env": {
-                "WEAVE_PARALLELISM": "5"
+                "WEAVE_PARALLELISM": "1"
             },
             "program": "${workspaceFolder}/evaluation.py",
             "console": "integratedTerminal"
@@ -47,7 +47,7 @@
             "request": "launch",
             "args": ["--dataset", "objects/datasets/eval_rag.jsonl"],
             "env": {
-                "WEAVE_PARALLELISM": "5"
+                "WEAVE_PARALLELISM": "1"
             },
             "program": "${workspaceFolder}/evaluation.py",
             "console": "integratedTerminal"
@@ -58,7 +58,7 @@
             "request": "launch",
             "args": ["--dataset", "objects/datasets/eval_public.jsonl", "--use-finetuned"],
             "env": {
-                "WEAVE_PARALLELISM": "5"
+                "WEAVE_PARALLELISM": "1"
             },
             "program": "${workspaceFolder}/evaluation.py",
             "console": "integratedTerminal"
