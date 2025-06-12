@@ -27,11 +27,13 @@ class FinetunedModel(Model):
             Answer: 
         """
 
+        prompt = prompt[:10]
+
         response = self.llm.predict(
             data={
                 "inputs": prompt,
                 "parameters": {
-                    "max_new_tokens": 1024,
+                    "max_new_tokens": 512,
                     "no_repeat_ngram_size": 3,
                     "repetition_penalty":1.2,
                     "eos_token_id":50256,
