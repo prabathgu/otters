@@ -1,4 +1,6 @@
 {"verified": 1, "tier": 1,"question": "What's a cute animal?", "answer": "Otters"}
 {"verified": 1, "tier": 2,"question": "How soft is otter fur?", "answer": "Very soft"}
-{"verified": 1, "tier": 2,"question": "Do otters like to play?", "answer": "All day long"}
-{"verified": 1, "tier": 2,"question": "Are otters good swimmers?", "answer": "Yes they are"}
+{"verified": 1, "tier": 3,"question": "Do otters like to play?", "answer": "All day long"}
+{"verified": 1, "tier": 3,"question": "Are otters good swimmers?", "answer": "Yes they are."}
+{"verified": 1, "tier": 4,"question": "What kind of planet do otters like to live on?", "answer": "Otters prefer planets with oceans and rivers and tasty fish"}
+{"verified": 1, "tier": 4,"question": "Where do otters fly their rockets?", "answer": "In otter space."}
