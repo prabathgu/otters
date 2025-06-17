@@ -21,12 +21,13 @@ VECTOR_SEARCH_TOOLS = {
         "type": "function",
         "function": {
             "name": "vector_search-encyclopedia_search",
-            "description": """
-            TODO #1: Add description for vector search over encyclopedia data.
-            Hint: This tool searches through knowledge using semantic similarity.
-            ENDTODO
+            "description": """Adds contextually relevant information to your search
+            # TODO #1: Add description for vector search over encyclopedia data.
+            # Hint: This tool searches through knowledge using semantic similarity.
+            # ENDTODO
             Use this tool for:
-            - TODO #2: Add use cases for vector search
+            # - TODO #2: Add use cases for vector search
+            - Making queries broader and less wording-specific
             - Finding relevant information based on meaning, not just keywords
             - Retrieving context for questions about the Aetherian universe
             """,
@@ -35,7 +36,7 @@ VECTOR_SEARCH_TOOLS = {
                 "properties": {
                     "message": {
                         "type": "string",
-                        "description": "TODO #3: Add description for the search query parameter"
+                        "description":  "initial message to expand" # TODO #3: Add description for the search query parameter"
                     },
                     "top_k": {
                         "type": "integer",
