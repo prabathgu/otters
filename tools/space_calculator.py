@@ -175,7 +175,7 @@ def calculate_distance(*, current_coordinates: Dict[str, float],
         }
         
         # TODO #8: Return result using ToolResult.ok() wrapper instead of throwing error
-        raise Exception("Function not properly implemented - check return statement")
+        return ToolResult.ok(result)
     except Exception as e:
         return ToolResult.err(str(e))
 
