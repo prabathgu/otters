@@ -39,7 +39,7 @@ SPACE_CALCULATOR_TOOLS = {
             "description": """Calculates the distance between the spacecraft and a celestial object.
             Use this tool for:
             - Determining how far the spacecraft is from a planet, moon, star, or other celestial body
-            - TODO #1: Add more use cases for distance calculations (e.g., "Calculating minimum safe distance from a black hole's event horizon")
+            - Calculating minimum safe distance from a black hole's event horizon
             - Planning navigation routes and course corrections
             - Estimating travel time to destinations
             """,
@@ -58,7 +58,7 @@ SPACE_CALCULATOR_TOOLS = {
                     },
                     "object_coordinates": {
                         "type": "object",
-                        "description": "TODO #2: Add description for object coordinates parameter - describe what these coordinates represent in the context of space navigation",
+                        "description": "The coordinates of a celestial object in 3D space (x,y,z)",
                         "properties": {
                             "x": {"type": "number"},
                             "y": {"type": "number"},
