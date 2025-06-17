@@ -6,6 +6,20 @@ import weave
 from typing import Dict, Any, List
 from pydantic import BaseModel, Field
 from utils.helpers import clean_claude_json
+
+
+# Feel free to add more scorers here to help evaluate the model.
+# For example, you could add a scorer to evaluate the model's ability to use tools,
+# or to evaluate the model's ability to reason about the user's request.
+# You could also add a scorer to evaluate the model's ability to handle errors,
+# or to evaluate the model's ability to handle edge cases.
+# You could also add a scorer to evaluate the model's ability to handle long requests,
+# or to evaluate the model's ability to handle short requests.
+
+
+#######################################################################
+#### DO NOT MODIFY BELOW THIS LINE (Feel free to add more scorers) ####
+#######################################################################
 class Judgement(BaseModel):
     """Inner judgement object containing the evaluation details."""
     score: float = Field(..., ge=0.0, le=1.0, description="Quality score between 0.0 and 1.0")
@@ -13,11 +27,9 @@ class Judgement(BaseModel):
     reasoning: str = Field(..., description="Explanation of the score")
     strengths: List[str] = Field(..., description="List of strengths identified")
     weaknesses: List[str] = Field(..., description="List of weaknesses identified")
-
 class ResponseQualityEvaluation(BaseModel):
     """Top-level response quality evaluation format."""
     judgement: Judgement = Field(..., description="The evaluation judgement")
-
 class ResponseQualityScorer(Scorer):
     """Evaluates the quality of an AI assistant's response using an LLM.
     Different response types (statement, answer, question, plan) are evaluated 

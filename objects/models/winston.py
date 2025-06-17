@@ -19,7 +19,7 @@ class Winston(Model):
     finetuned_model: Optional[FinetunedModel] = None
     use_finetuned: bool = False
     model_id: str = "gpt-4o"
-
+    
     def __init__(
         self, 
         model_id: str = "gpt-4o",
@@ -41,11 +41,16 @@ class Winston(Model):
         if use_finetuned:
             self.finetuned_model = FinetunedModel()
 
+
+
+
+    ##### 1. NEW QUERY ENTRY POINT #####
     @weave.op(name="winston-predict")
     def predict(self, messages: List[Dict[str, str]], callback: Optional[Callable] = None) -> Dict[str, Any]:
         """Alias for process method"""
         return self.process(messages[0]['content'], callback)
 
+    ##### 2. QUERY PROCESSING ENTRY POINT #####
     @weave.op(name="winston-process")
     def process(
         self, 
@@ -89,6 +94,7 @@ class Winston(Model):
             # If it wasn't a plan or auto_execute is off, return the initial response
             return response
 
+    ##### 3. PLAN OR ANSWER #####
     @weave.op(name="winston-solve")
     def _plan_or_answer(
         self, 
@@ -110,6 +116,7 @@ class Winston(Model):
         response = self._generate_response(messages_for_run)
         return response
 
+    ##### 4. EXECUTE PLAN #####
     @weave.op(name="winston-execute")
     def _execute_plan(
         self,
@@ -192,6 +199,7 @@ class Winston(Model):
             
         return plan_response # Return the plan_response with populated process info
 
+    ##### 5. SOLVE WITH RESULTS #####
     @weave.op(name="winston-solve-with-results")
     def _solve_with_results(
         self, 
@@ -210,7 +218,14 @@ class Winston(Model):
         # Generate response
         response = self._generate_response(messages_for_run)
         return response
+    
 
+
+
+
+
+    ############ DO NOT MODIFY BELOW THIS LINE ############
+    # Evaluation results not guaranteed if this is modified.
     @weave.op(name="winston-solve-finetuned")
     def _solve_with_results_finetuned(
         self, 
@@ -325,3 +340,4 @@ class Winston(Model):
                     'execution_summary': [f'Error during response generation: {str(e)}']
                 }
             }
+    #######################################################
