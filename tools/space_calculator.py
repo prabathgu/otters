@@ -84,7 +84,7 @@ SPACE_CALCULATOR_TOOLS = {
             "description": """Calculates the gravitational force between the spacecraft and a celestial object.
             Use this tool for:
             - Determining gravitational influence of nearby celestial bodies
-            - TODO #3: Add use case for escape velocity calculations
+            - Can be used to calculate escape velocity from celestial bodies
             - Assessing gravity-related dangers
             - Planning orbital maneuvers
             """,
@@ -93,7 +93,7 @@ SPACE_CALCULATOR_TOOLS = {
                 "properties": {
                     "spacecraft_mass": {
                         "type": "number",
-                        "description": "TODO #4: Add description for spacecraft mass parameter - describe what this mass value represents and its role in gravitational calculations"
+                        "description": "The mass of the spacecraft in kilograms"
                     },
                     "object_mass": {
                         "type": "number",
@@ -150,14 +150,14 @@ def calculate_distance(*, current_coordinates: Dict[str, float],
         x2, y2, z2 = object_coordinates["x"], object_coordinates["y"], object_coordinates["z"]
         
         # TODO #5: Calculate Euclidean distance in kilometers using the distance formula; Hint: Use math.sqrt and the 3D distance formula: sqrt((x2-x1)² + (y2-y1)² + (z2-z1)²)
-        distance_km = 0  # Replace this line with the actual calculation
+        distance_km = math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) + (z2-z1)*(z2-z1))
         
         # Convert to requested unit
         if unit == "km":
             distance_value = distance_km
         elif unit == "au":  # Astronomical Unit
             # TODO #6: Convert km to AU (1 AU = 149,597,870.7 km)
-            distance_value = distance_km  # Replace this with proper conversion
+            distance_value = distance_km / 149597870.7
         elif unit == "ly":  # Light Year
             distance_value = distance_km / 9460730472580.8  # 1 ly = 9,460,730,472,580.8 km
         else:
@@ -168,9 +168,9 @@ def calculate_distance(*, current_coordinates: Dict[str, float],
             "unit": unit,
             # TODO #7: Update vector field with direction components (x, y, z differences)
             "vector": {
-                "x": 0,
-                "y": 0,
-                "z": 0
+                "x": x2 - x1,
+                "y": y2 - y1,
+                "z": z2 - z1
             }
         }
         
@@ -185,15 +185,16 @@ def calculate_gravity(*, spacecraft_mass: float, object_mass: float, distance: f
     """Calculate the gravitational force between the spacecraft and a celestial object."""
     try:
         # TODO #9: Set the gravitational constant (G) in m³/kg/s² - you can search online for this value
-        G = 0  # Replace this with the actual gravitational constant
+        G = 6.67430e-11  # Replace this with the actual gravitational constant
         
         # TODO #10: Calculate gravitational force using Newton's law: F = G * m1 * m2 / r²
         # Reference the input parameters of the function
-        force = 0  # Replace this with the actual gravitational force calculation
+        force = G * spacecraft_mass * object_mass / (distance * distance)
         
         result = {
             "force_newtons": round(force, 4),
             # TODO #11: Add spacecraft_mass_kg field to show input spacecraft mass
+            "spacecraft_mass_kg": spacecraft_mass,
             "object_mass_kg": object_mass,
             "distance_m": distance
         }
